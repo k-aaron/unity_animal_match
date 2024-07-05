@@ -16,17 +16,16 @@ public class Card : MonoBehaviour
 
     private bool isFlipped = false;
     private bool isFlipping = false;
+    public int cardID;
 
-    // Start is called before the first frame update
-    void Start()
+    public void SetCardID(int id)
     {
-        
+        cardID = id;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetAnimalSprite(Sprite sprite)
     {
-        
+        this.animalSprite = sprite;
     }
 
     public void FlipCard()
