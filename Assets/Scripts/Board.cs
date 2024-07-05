@@ -16,6 +16,7 @@ public class Board : MonoBehaviour
     void Start()
     {
         GenerateCardID();
+        ShuffleCardID();
         InitBoard();
     }
 
@@ -25,6 +26,18 @@ public class Board : MonoBehaviour
         {
             cardIDList.Add(i);
             cardIDList.Add(i);
+        }
+    }
+
+    void ShuffleCardID()
+    {
+        int cardCount = cardIDList.Count;
+        for (int i = 0; i < cardCount; i++)
+        {
+            int randomIndex = UnityEngine.Random.Range(i, cardCount);
+            int temp = cardIDList[randomIndex];
+            cardIDList[randomIndex] = cardIDList[i];
+            cardIDList[i] = temp;
         }
     }
 
@@ -47,9 +60,9 @@ public class Board : MonoBehaviour
                 Vector3 pos = new Vector3(posX, posY, 0f);
                 GameObject cardObject = Instantiate(cardPrefab, pos, Quaternion.identity);
                 Card card = cardObject.GetComponent<Card>();
-                int cardId = cardIDList[cardIndex++];
-                card.SetCardID(cardId);
-                card.SetAnimalSprite(cardSprites[cardId]);
+                int cardID = cardIDList[cardIndex++];
+                card.SetCardID(cardID);
+                card.SetAnimalSprite(cardSprites[cardID]);
             }
         }
     }
