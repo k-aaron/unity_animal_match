@@ -16,11 +16,18 @@ public class Card : MonoBehaviour
 
     private bool isFlipped = false;
     private bool isFlipping = false;
+    private bool isMatched = false;
+
     public int cardID;
 
     public void SetCardID(int id)
     {
         cardID = id;
+    }
+
+    public void SetMatched()
+    {
+        isMatched = true;
     }
 
     public void SetAnimalSprite(Sprite sprite)
@@ -58,7 +65,7 @@ public class Card : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (!isFlipping)
-            FlipCard();
+        if (!isFlipping && !isMatched && !isFlipped)
+            GameManager.instance.CardClicked(this);
     }
 }
